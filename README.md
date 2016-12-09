@@ -57,6 +57,6 @@ Please include these citations if you plan to use this Framework:
 
 - Hossam Faris, Ibrahim Aljarah and Seyedali Mirjalili, "Training feedforward neural networks using multi-verse optimizer for binary classification problems", Applied Intelligence, Springer, March 2016.
 
--[2016] Ibrahim Aljarah, Hossam Faris and Seyedali Mirjalili, “Optimizing connection weights in neural networks using the whale optimization algorithm", Soft Computing, Springer, November 2016
+- Ibrahim Aljarah, Hossam Faris and Seyedali Mirjalili, “Optimizing connection weights in neural networks using the whale optimization algorithm", Soft Computing, Springer, November 2016
 
 
