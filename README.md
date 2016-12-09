@@ -45,17 +45,17 @@ Clone the Git repository from GitHub
 
 Use the [issue tracker](https://github.com/7ossam81/EvoloPy-NN/issues). 
 
-##SCitation Request:
+##Citation Request:
 
 Please include these citations if you plan to use this Framework:
 
--[2016] Hossam Faris, Ibrahim Aljarah, Sayedali Mirjalili, Pedro Castillo, and J.J Merelo. "EvoloPy: An Open-source Nature-inspired Optimization Framework in Python". In Proceedings of the 8th International Joint Conference on Computational Intelligence - Volume 3: ECTA,ISBN 978-989-758-201-1, pages 171-177.
+- Hossam Faris, Ibrahim Aljarah, Sayedali Mirjalili, Pedro Castillo, and J.J Merelo. "EvoloPy: An Open-source Nature-inspired Optimization Framework in Python". In Proceedings of the 8th International Joint Conference on Computational Intelligence - Volume 3: ECTA,ISBN 978-989-758-201-1, pages 171-177.
 
--[2016] Hossam Faris, Ibrahim Aljarah, Nailah Al-Madi, and Seyedali Mirjalili. "Optimizing the Learning Process of Feedforward Neural Networks Using Lightning Search Algorithm." International Journal on Artificial Intelligence Tools 25, no. 06 (2016).
+- Hossam Faris, Ibrahim Aljarah, Nailah Al-Madi, and Seyedali Mirjalili. "Optimizing the Learning Process of Feedforward Neural Networks Using Lightning Search Algorithm." International Journal on Artificial Intelligence Tools 25, no. 06 (2016).
 
--[2016] Ibrahim Aljarah, Hossam Faris, Seyedali Mirjalili, Nailah Al-Madi, "Training radial basis function networks using biogeography-based optimizer", Neural Computing and Applications, Springer, August 2016.
+- Ibrahim Aljarah, Hossam Faris, Seyedali Mirjalili, Nailah Al-Madi, "Training radial basis function networks using biogeography-based optimizer", Neural Computing and Applications, Springer, August 2016.
 
--[2016] Hossam Faris, Ibrahim Aljarah and Seyedali Mirjalili, "Training feedforward neural networks using multi-verse optimizer for binary classification problems", Applied Intelligence, Springer, March 2016.
+- Hossam Faris, Ibrahim Aljarah and Seyedali Mirjalili, "Training feedforward neural networks using multi-verse optimizer for binary classification problems", Applied Intelligence, Springer, March 2016.
 
 -[2016] Ibrahim Aljarah, Hossam Faris and Seyedali Mirjalili, “Optimizing connection weights in neural networks using the whale optimization algorithm", Soft Computing, Springer, November 2016
 
