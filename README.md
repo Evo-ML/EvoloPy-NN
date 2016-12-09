@@ -3,6 +3,9 @@
 The EvoloPy-NN framework provides classical and recent nature-inspired metaheuristic for training a single layer Multilayer Perceptron Neural Network. The list of optimizers that have been implemented includes Particle Swarm Optimization (PSO), Multi-Verse Optimizer (MVO), Grey Wolf Optimizer (GWO), and Moth Flame Optimization (MFO). The full list of implemented optimizers is available here https://github.com/7ossam81/EvoloPy/wiki/List-of-optimizers
 
 
+
+<div style="text-align:center"><img src="https://cloud.githubusercontent.com/assets/17023748/21052168/d61dd09e-be23-11e6-9c59-58f000bff11e.jpg"  height="40%" width="40%"></div>
+
 ##Features
 - Six nature-inspired metaheuristic optimizers are implemented.
 - The implimentation uses the fast array manipulation using `NumPy`.
