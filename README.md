@@ -4,7 +4,7 @@ The EvoloPy-NN framework provides classical and recent nature-inspired metaheuri
 
 
 
-<div style="text-align:center"><img src="https://cloud.githubusercontent.com/assets/17023748/21052168/d61dd09e-be23-11e6-9c59-58f000bff11e.jpg"  height="40%" width="40%"></div>
+<div style="text-align:center"><img  src="https://cloud.githubusercontent.com/assets/17023748/21052168/d61dd09e-be23-11e6-9c59-58f000bff11e.jpg"  height="40%" width="40%"></div>
 
 ##Features
 - Six nature-inspired metaheuristic optimizers are implemented.
