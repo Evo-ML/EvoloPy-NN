@@ -65,12 +65,14 @@ To add new dataset:
 - Normalize/Scale you dataset ([0,1] scaling is prefered).
 - Split the dataset into 66% training, and 34% testing.
 - Rename the training and testing sets based on the following pattern such as:
-  [Dataset Name]Train.csv  % replace the [Dataset Name] part by the actual name of the dataset.
-  [Dataset Name]Test.csv
+
+    [Dataset Name]Train.csv  % replace the [Dataset Name] part by the actual name of the dataset.
+    [Dataset Name]Test.csv
   
   Example: If the datset name is Seed, the two files will be like the following:
-  SeedTrain.csv
-  SeedTest.csv
+    
+      SeedTrain.csv
+      SeedTest.csv
   
 - Place the new datset files in the datasets folder.
 - Add the dataset to the datasets list in the main.py (Line 18).
