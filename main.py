@@ -7,10 +7,10 @@ import selector as slctr
 # Select optimizers
 PSO= True
 MVO= True
-GWO = False
-MFO= False
-CS= False
-BAT=False
+GWO = True
+MFO= True
+CS= True
+BAT=True
 
 
 
@@ -45,7 +45,7 @@ for l in range(0,Iterations):
 
 trainDataset="breastTrain.csv"
 testDataset="breastTest.csv"
-for j in range (0, 2):        # specfiy the number of the datasets
+for j in range (0, len(datasets)):        # specfiy the number of the datasets
     for i in range (0, len(optimizer)):
     
         if((optimizer[i]==True)): # start experiment if an optimizer and an objective function is selected
