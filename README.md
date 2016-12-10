@@ -41,7 +41,73 @@ Clone the Git repository from GitHub
 
 
 ##Quick User Guide
+EvoloPy-NN Framework contains six datasets (All of them are obtainied from UCI repository). 
+The main file is the main.py, which considered the interface of the framewok. In the main.py you 
+can setup your experiment by selecting the optmizers, the datasets, number of runs, number of iterations, number of neurons
+and population size. The following is a sample example to use the EvoloPy-NN framework.
+To choose PSO optimizer for your experiment, change the PSO flag to true and others to false.
 
+Select optimizers:    
+PSO= True  
+MVO= False  
+GWO = False  
+MFO= False  
+CS= False  
+
+After that, Select datasets:
+
+datasets=["BreastCancer", "Diabetes", "Liver", "Parkinsons", "Vertebral"]
+
+The folder datasets in the repositoriy contains 6 binary datasets (All of them are obtained from UCI repository).
+
+To add new dataset:
+- Put your dataset in a csv format (No header is required)
+- Normalize/Scale you dataset ([0,1] scaling is prefered).
+- Split the dataset into 66% training, and 34% testing.
+- Rename the training and testing sets based on the following pattern such as:
+  [Dataset Name]Train.csv  % replace the [Dataset Name] part by the actual name of the dataset.
+  [Dataset Name]Test.csv
+  
+  Example: If the datset name is Seed, the two files will be like the following:
+  SeedTrain.csv
+  SeedTest.csv
+  
+- Place the new datset files in the datasets folder.
+- Add the dataset to the datasets list in the main.py (Line 18).
+  For example, if the dastaset name is Seed: the new line  will be like this:
+    datasets=["BreastCancer", "Diabetes", "Liver", "Parkinsons", "Vertebral", "Seed"]
+
+
+Change NumOfRuns, PopulationSize, and Iterations variables as you want:
+For Example: 
+
+NumOfRuns=10  
+PopulationSize = 50  
+Iterations= 1000
+
+Now your experiment is ready to go. Enjoy!  
+
+The results will be automaticly generated in excel file called Experiment which is concatnated with the date and time of the experiment.
+The results file contains the following measures:
+
+Optimizer: The name of the used optimizer
+Dataset: The name of the dataset.
+objfname: The objective function/ Fitness function
+Experiment: Experiment ID/ Run ID.
+startTime: Experiment's starting time
+EndTime: Experiment's ending time
+ExecutionTime : Experiment's executionTime (in seconds)
+trainAcc: Trainig Accuracy
+trainTP: Training True Positive
+trainFN: Training False Negative
+trainFP: Training False Positive
+trainTN: Training True Negative
+testAcc: Trainig Accuracy
+testTP: Training True Positive
+testFN: Training False Negative
+testFP: Training False Positive
+testTN: Training True Negative
+Iter1	Iter2 Iter3... : Convergence values (The bjective function values after every iteration).	
 
 ##Contribute
 - Issue Tracker: https://github.com/7ossam81/EvoloPy-NN/issues  
