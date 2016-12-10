@@ -8,8 +8,8 @@ The EvoloPy-NN framework provides classical and recent nature-inspired metaheuri
 
 ##Features
 - Six nature-inspired metaheuristic optimizers are implemented.
-- The implimentation uses the fast array manipulation using `NumPy`.
-- Matrix support using `SciPy`'s package.
+- The implimentation uses the fast array manipulation using [`NumPy`] (http://www.numpy.org/).
+- Matrix support using [`SciPy`'s] (https://www.scipy.org/) package.
 - More optimizers are comming soon.
 - Only binary classification problems are supported so far.
 - The implimentation uses the powerful Neural Network Library [`neurolab`] (https://pythonhosted.org/neurolab/). 
