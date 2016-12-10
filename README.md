@@ -90,24 +90,24 @@ Now your experiment is ready to go. Enjoy!
 The results will be automaticly generated in excel file called Experiment which is concatnated with the date and time of the experiment.
 The results file contains the following measures:
 
-Optimizer: The name of the used optimizer
-Dataset: The name of the dataset.
-objfname: The objective function/ Fitness function
-Experiment: Experiment ID/ Run ID.
-startTime: Experiment's starting time
-EndTime: Experiment's ending time
-ExecutionTime : Experiment's executionTime (in seconds)
-trainAcc: Trainig Accuracy
-trainTP: Training True Positive
-trainFN: Training False Negative
-trainFP: Training False Positive
-trainTN: Training True Negative
-testAcc: Trainig Accuracy
-testTP: Training True Positive
-testFN: Training False Negative
-testFP: Training False Positive
-testTN: Training True Negative
-Iter1	Iter2 Iter3... : Convergence values (The bjective function values after every iteration).	
+  Optimizer: The name of the used optimizer
+  Dataset: The name of the dataset.
+  objfname: The objective function/ Fitness function
+  Experiment: Experiment ID/ Run ID.
+  startTime: Experiment's starting time
+  EndTime: Experiment's ending time
+  ExecutionTime : Experiment's executionTime (in seconds)
+  trainAcc: Trainig Accuracy
+  trainTP: Training True Positive
+  trainFN: Training False Negative
+  trainFP: Training False Positive
+  trainTN: Training True Negative
+  testAcc: Trainig Accuracy
+  testTP: Training True Positive
+  testFN: Training False Negative
+  testFP: Training False Positive
+  testTN: Training True Negative
+  Iter1	Iter2 Iter3... : Convergence values (The bjective function values after every iteration).	
 
 ##Contribute
 - Issue Tracker: https://github.com/7ossam81/EvoloPy-NN/issues  
