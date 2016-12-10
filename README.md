@@ -78,6 +78,7 @@ To add new dataset:
   
 - Place the new datset files in the datasets folder.
 - Add the dataset to the datasets list in the main.py (Line 18).
+  
   For example, if the dastaset name is Seed: the new line  will be like this:
         
         datasets=["BreastCancer", "Diabetes", "Liver", "Parkinsons", "Vertebral", "Seed"]
