@@ -12,6 +12,8 @@ The EvoloPy-NN framework provides classical and recent nature-inspired metaheuri
 - Matrix support using `SciPy`'s package.
 - More optimizers are comming soon.
 - Only binary classification problems are supported so far.
+- The implimentation uses the powerful Neural Network Library [`neurolab`] (https://pythonhosted.org/neurolab/). 
+ 
 
 ##Installation
 - Python 3.xx is required.
