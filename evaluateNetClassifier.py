@@ -68,7 +68,7 @@ def evaluateNetClassifier(solution,inputs,outputs,net):
     #print(ConfMatrix)
     #print(trainOutput)
     #print(pred)
-    time.sleep(5)
+    #time.sleep(5)
     ConfMatrix1D=ConfMatrix.flatten()
     #print(ConfMatrix1D)
     printAcc.append(accuracy_score(trainOutput, pred,normalize=True)) 
