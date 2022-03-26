@@ -4,12 +4,20 @@ Created on Wed Dec  7 20:44:52 2016
 
 @author: hossam
 """
-import PSO as pso
-import MVO as mvo
-import GWO as gwo
-import MFO as mfo
-import CS as cs
-import BAT as bat
+import optimizers.PSO as pso
+import optimizers.MVO as mvo
+import optimizers.GWO as gwo
+import optimizers.MFO as mfo
+import optimizers.CS as cs
+import optimizers.BAT as bat
+import optimizers.WOA as woa
+import optimizers.FFA as ffa
+import optimizers.SSA as ssa
+import optimizers.GA as ga
+import optimizers.HHO as hho
+import optimizers.SCA as sca
+import optimizers.JAYA as jaya
+import optimizers.DE as de
 import csv
 import numpy
 import time
@@ -64,7 +72,23 @@ def selector(algo,func_details,popSize,Iter,trainDataset,testDataset):
         x=cs.CS(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
     if(algo==5):
         x=bat.BAT(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
-    
+    if(algo==6):
+        x=woa.WOA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==7):
+        x=ffa.FFA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==8):
+        x=ssa.SSA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==9):
+        x=ga.GA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==10):
+        x=hho.HHO(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==11):
+        x=sca.SCA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==12):
+        x=jaya.JAYA(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    if(algo==13):
+        x=de.DE(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+        
 
     # Evaluate MLP classification model based on the training set
     trainClassification_results=evalNet.evaluateNetClassifier(x,trainInput,trainOutput,net)
