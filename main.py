@@ -5,16 +5,16 @@ import time
 import selector as slctr
 
 # Select optimizers
-PSO= False
-MVO= False
-GWO = False
+PSO= True
+MVO= True
+GWO = True
 MFO= False
 CS= False
 BAT=False
 WOA=False
 FFA=False
 SSA=False
-GA=True
+GA=False
 HHO=False
 SCA=False
 JAYA=False
@@ -23,7 +23,7 @@ DE=False
 
 
 optimizer=[PSO, MVO, GWO, MFO, CS, BAT, WOA, FFA, SSA, GA, HHO, SCA, JAYA, DE]
-datasets=["BreastCancer", "Diabetes", "Liver", "Parkinsons", "Vertebral"]
+datasets=["flame","glass","iris","wdbc","Vertebral2"]
         
 # Select number of repetitions for each experiment. 
 # To obtain meaningful statistical results, usually 30 independent runs 
@@ -51,8 +51,7 @@ CnvgHeader=[]
 for l in range(0,Iterations):
 	CnvgHeader.append("Iter"+str(l+1))
 
-trainDataset="breastTrain.csv"
-testDataset="breastTest.csv"
+
 for j in range (0, len(datasets)):        # specfiy the number of the datasets
     for i in range (0, len(optimizer)):
     
@@ -60,9 +59,10 @@ for j in range (0, len(datasets)):        # specfiy the number of the datasets
             for k in range (0,NumOfRuns):
                 
                 func_details=["costNN",-1,1]
-                trainDataset=datasets[j]+"Train.csv"
-                testDataset=datasets[j]+"Test.csv"
-                x=slctr.selector(i,func_details,PopulationSize,Iterations,trainDataset,testDataset)
+
+                dataset="datasets/"+datasets[j]+".csv"
+                
+                x=slctr.selector(i,func_details,PopulationSize,Iterations,dataset)
                   
                 if(Export==True):
                     with open(ExportToFile, 'a',newline='\n') as out:

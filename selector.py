@@ -25,40 +25,29 @@ import neurolab as nl
 import costNN
 import evaluateNetClassifier as evalNet
 import solution
+from sklearn.model_selection import train_test_split
 
-def selector(algo,func_details,popSize,Iter,trainDataset,testDataset):
+def selector(algo,func_details,popSize,Iter,dataset):
     function_name=func_details[0]
     lb=func_details[1]
     ub=func_details[2]
     
     DatasetSplitRatio=2/3
-    
-    dataTrain="datasets/"+trainDataset
-    dataTest="datasets/"+testDataset
-    
-    Dataset_train=numpy.loadtxt(open(dataTrain,"rb"),delimiter=",",skiprows=0)
-    Dataset_test=numpy.loadtxt(open(dataTest,"rb"),delimiter=",",skiprows=0)
-      
-    
-    numRowsTrain=numpy.shape(Dataset_train)[0]    # number of instances in the train dataset
-    numInputsTrain=numpy.shape(Dataset_train)[1]-1 #number of features in the train dataset
-
-    numRowsTest=numpy.shape(Dataset_test)[0]    # number of instances in the test dataset
-    
-    numInputsTest=numpy.shape(Dataset_test)[1]-1 #number of features in the test dataset
+        
+    dataset_values=numpy.loadtxt(open(dataset,"rb"),delimiter=",")
  
+    X = numpy.array(dataset_values)[:,:-1]
+    y = numpy.array(dataset_values)[:,-1]
 
-    trainInput=Dataset_train[0:numRowsTrain,0:-1]
-    trainOutput=Dataset_train[0:numRowsTrain,-1]
+    trainInput, testInput, trainOutput, testOutput = train_test_split(X, y, test_size=0.33, random_state=42)
     
-    testInput=Dataset_test[0:numRowsTest,0:-1]
-    testOutput=Dataset_test[0:numRowsTest,-1]
-    
+    numFeatures=numpy.shape(trainInput)[1]#number of features in the train dataset
+
     #number of hidden neurons
-    HiddenNeurons = numInputsTrain*2+1
-    net = nl.net.newff([[0, 1]]*numInputsTrain, [HiddenNeurons, 1])
+    HiddenNeurons = numFeatures*2+1
+    net = nl.net.newff([[0, 1]]*numFeatures, [HiddenNeurons, 1])
     
-    dim=(numInputsTrain*HiddenNeurons)+(2*HiddenNeurons)+1;
+    dim=(numFeatures*HiddenNeurons)+(2*HiddenNeurons)+1;
     
     if(algo==0):
         x=pso.PSO( getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
