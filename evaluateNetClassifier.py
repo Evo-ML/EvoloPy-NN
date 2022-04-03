@@ -74,7 +74,7 @@ def evaluateNetClassifier(solution,inputs,outputs,net):
     printAcc.append(accuracy_score(trainOutput, pred,normalize=True)) 
     
     classification_results= np.concatenate((printAcc,ConfMatrix1D))
-    print(classification_results)
+    #print(classification_results)
     return classification_results
     
     
