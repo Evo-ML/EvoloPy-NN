@@ -7,6 +7,8 @@ Created on Fri May 27 12:03:15 2016
 import numpy as np
 import neurolab as nl
 import time
+#import warnings
+#warnings.filterwarnings("ignore") 
 
 
 def costNN(x,inputs,outputs,net):

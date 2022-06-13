@@ -24,11 +24,19 @@ import vectorized_optimizers.DE_ as de
 import csv
 import numpy
 import time
+import os
 import neurolab as nl
 import vectorized_costNN as costNN
 import evaluateNetClassifier as evalNet
 import solution
+import plot_convergence as conv_plot
+import plot_boxplot as box_plot
+
 from sklearn.model_selection import train_test_split
+
+from pathlib import Path
+import warnings
+warnings.filterwarnings("ignore") 
 
 def run(optimizer, datasets, NumOfRuns, params):
 
@@ -37,7 +45,9 @@ def run(optimizer, datasets, NumOfRuns, params):
 
     #ExportToFile="YourResultsAreHere.csv"
     #Automaticly generated file name by date and time
-    ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
+    results_directory = time.strftime("%Y-%m-%d-%H-%M-%S")
+    os.mkdir(results_directory)
+    ExportToFile=results_directory + "/experiment.csv"
 
     # Check if it works at least once
     Flag=False
@@ -49,7 +59,7 @@ def run(optimizer, datasets, NumOfRuns, params):
 
     for l in range(0,Iterations):
         CnvgHeader.append("Iter"+str(l+1))
-    
+
     for j in range (0, len(datasets)):        # specfiy the number of the datasets
         for i in range (0, len(optimizer)):    
             for k in range (0,NumOfRuns):
@@ -59,51 +69,63 @@ def run(optimizer, datasets, NumOfRuns, params):
                 dataset="datasets/"+datasets[j]+".csv"
 
                     
-                dataset_values=numpy.loadtxt(open(dataset,"rb"),delimiter=",")
-             
-                X = numpy.array(dataset_values)[:,:-1]
-                y = numpy.array(dataset_values)[:,-1]
-
-                trainInput, testInput, trainOutput, testOutput = train_test_split(X, y, test_size=0.33, random_state=42)
-                
-                numFeatures=numpy.shape(trainInput)[1]#number of features in the train dataset
-
-                #number of hidden neurons
-                HiddenNeurons = numFeatures*2+1
-                net = nl.net.newff([[0, 1]]*numFeatures, [HiddenNeurons, 1])
-                
-                dim=(numFeatures*HiddenNeurons)+(2*HiddenNeurons)+1;
+                with open(dataset,"rb") as dataset_v:
+    
+                    dataset_values=numpy.loadtxt(dataset_v,delimiter=",")
                     
-                x = selector(optimizer[i], func_details, dim, PopulationSize, Iterations, trainInput,trainOutput,net)
+                    X = numpy.array(dataset_values)[:,:-1]
+                    y = numpy.array(dataset_values)[:,-1]
 
-                # Evaluate MLP classification model based on the training set
-                trainClassification_results=evalNet.evaluateNetClassifier(x,trainInput,trainOutput,net)
+                    trainInput, testInput, trainOutput, testOutput = train_test_split(X, y, test_size=0.33, random_state=42)
+                    
+                    numFeatures=numpy.shape(trainInput)[1]#number of features in the train dataset
 
-                x.trainAcc=trainClassification_results[0]
-                x.trainTP=trainClassification_results[1]
-                x.trainFN=trainClassification_results[2]
-                x.trainFP=trainClassification_results[3]
-                x.trainTN=trainClassification_results[4]
-               
-                # Evaluate MLP classification model based on the testing set   
-                testClassification_results=evalNet.evaluateNetClassifier(x,testInput,testOutput,net)
-                x.testAcc=testClassification_results[0]
-                x.testTP=testClassification_results[1]
-                x.testFN=testClassification_results[2]
-                x.testFP=testClassification_results[3]
-                x.testTN=testClassification_results[4] 
-                
-                
-                if(Export==True):
+                    #number of hidden neurons
+                    HiddenNeurons = numFeatures*2+1
+                    net = nl.net.newff([[0, 1]]*numFeatures, [HiddenNeurons, 1])
+                    
+                    dim=(numFeatures*HiddenNeurons)+(2*HiddenNeurons)+1;
+                        
+                    x = selector(optimizer[i], func_details, dim, PopulationSize, Iterations, trainInput,trainOutput,net)
+                    
+                    # Evaluate MLP classification model based on the training set
+                    #trainClassification_results=evalNet.evaluateNetClassifier(x,trainInput,trainOutput,net)
+                    ConfMatrix, acc, prec, rec, f1, gm=evalNet.evaluateNetClassifier(x,trainInput,trainOutput,net)
+                    
+                    '''
+                    x.trainAcc=trainClassification_results[0]
+                    x.trainTP=trainClassification_results[1]
+                    x.trainFN=trainClassification_results[2]
+                    x.trainFP=trainClassification_results[3]
+                    x.trainTN=trainClassification_results[4]
+                   
+                    # Evaluate MLP classification model based on the testing set   
+                    testClassification_results=evalNet.evaluateNetClassifier(x,testInput,testOutput,net)
+                    x.testAcc=testClassification_results[0]
+                    x.testTP=testClassification_results[1]
+                    x.testFN=testClassification_results[2]
+                    x.testFP=testClassification_results[3]
+                    x.testTN=testClassification_results[4] 
+                    '''
+
                     with open(ExportToFile, 'a',newline='\n') as out:
                         writer = csv.writer(out,delimiter=',')
                         if (Flag==False): # just one time to write the header of the CSV file
-                            header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc", "trainTP","trainFN","trainFP","trainTN", "testAcc", "testTP","testFN","testFP","testTN"],CnvgHeader])
+                            #header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc", "trainTP","trainFN","trainFP","trainTN", "testAcc", "testTP","testFN","testFP","testTN"],CnvgHeader])
+                            header= numpy.concatenate([["Optimizer","Dataset","Experiment","startTime","EndTime","ExecutionTime","ConfMatrix", "Accuracy", "Precision","Recall","F1score","Gmean"],CnvgHeader])
                             writer.writerow(header)
-                        a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc, x.trainTP,x.trainFN,x.trainFP,x.trainTN, x.testAcc, x.testTP,x.testFN,x.testFP,x.testTN],x.convergence])
+                            Flag=True # at least one experiment
+                        #a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc, x.trainTP,x.trainFN,x.trainFP,x.trainTN, x.testAcc, x.testTP,x.testFN,x.testFP,x.testTN],x.convergence])
+                        a=numpy.concatenate([[x.optimizer,datasets[j],k+1,x.startTime,x.endTime,x.executionTime,ConfMatrix, acc,prec,rec,f1, gm],x.convergence])
                         writer.writerow(a)
                     out.close()
-                Flag=True # at least one experiment
+
+    conv_plot.run(results_directory, optimizer, datasets, Iterations)
+
+    ev_measures=['Accuracy','Gmean']
+    box_plot.run(results_directory, optimizer, datasets, ev_measures, Iterations)
+
+    
 
 
     if (Flag==False): # Faild to run at least one experiment

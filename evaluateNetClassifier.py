@@ -6,13 +6,17 @@ Created on Fri May 27 21:22:19 2016
 """
 
 from sklearn.metrics import confusion_matrix
-#from sklearn.metrics import recall_score
-#from sklearn.metrics import precision_score
-#from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import f1_score
+from imblearn.metrics import geometric_mean_score
+#from sklearn.metrics import classification_report
 import numpy as np
 import neurolab as nl
 import time
+#import warnings
+#warnings.filterwarnings("ignore") 
 
 def evaluateNetClassifier(solution,inputs,outputs,net):
     
@@ -64,18 +68,24 @@ def evaluateNetClassifier(solution,inputs,outputs,net):
 
     ConfMatrix=confusion_matrix(trainOutput, pred)     
     
+    #ConfMatrix1D=ConfMatrix.flatten()
+    #printAcc.append(accuracy_score(trainOutput, pred,normalize=True)) 
+    if max(trainOutput) > 1:
+        acc = accuracy_score(trainOutput, pred)
+        prec = precision_score(trainOutput, pred,average=None)
+        rec = recall_score(trainOutput, pred,average=None)
+        f1 = f1_score(trainOutput, pred,average=None)
+        gm = geometric_mean_score(trainOutput, pred)
+    else:
+        acc = accuracy_score(trainOutput, pred)
+        prec = precision_score(trainOutput, pred)
+        rec = recall_score(trainOutput, pred)
+        f1 = f1_score(trainOutput, pred)
+        gm = geometric_mean_score(trainOutput, pred)
 
-    #print(ConfMatrix)
-    #print(trainOutput)
-    #print(pred)
-    #time.sleep(5)
-    ConfMatrix1D=ConfMatrix.flatten()
-    #print(ConfMatrix1D)
-    printAcc.append(accuracy_score(trainOutput, pred,normalize=True)) 
-    
-    classification_results= np.concatenate((printAcc,ConfMatrix1D))
+    #classification_results= np.concatenate((printAcc,ConfMatrix1D))
     #print(classification_results)
-    return classification_results
+    return ConfMatrix, acc, prec, rec, f1, gm
     
     
     
